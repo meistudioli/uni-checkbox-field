@@ -72,7 +72,7 @@ document.body.appendChild(nodeB);
 
 ## Style Customization
 
-Developers could apply styles to decorate <uni-checkbox-field />'s looking.
+Developers could apply styles to decorate &lt;uni-checkbox-field />'s looking.
 
 ```html
 <style>
@@ -122,7 +122,7 @@ uni-checkbox-field {
 ## Method
 | Mathod Signature | Description |
 | ----------- | ----------- |
-| refresh() | Force a UI refresh on &lt;uni-input-field />. |
+| refresh() | Force a UI refresh on &lt;uni-checkbox-field />. |
 
 ## Reference
 - [&lt;uni-checkbox-field /> demo](https://blog.lalacube.com/mei/webComponent_uni-checkbox-field.html)
