@@ -1,0 +1,23 @@
+{
+  "name": "uni-checkbox-field",
+  "version": "1.0.0",
+  "description": "<uni-checkbox-field /> is an encapsulated Web Component built upon the foundation of the uniopen design language. Implementation is straightforward: simply slot a standard input element inside <uni-checkbox-field />. The component instantly applies a user interface that aligns seamlessly with the uniopen design language guidelines. Furthermore, its visual styles can be dynamically adapted via native HTML attributes or JavaScript properties.",
+  "keywords": [
+    "web"
+  ],
+  "homepage": "https://github.com/meistudioli/uni-checkbox-field#readme",
+  "bugs": {
+    "url": "https://github.com/meistudioli/uni-checkbox-field/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/meistudioli/uni-checkbox-field.git"
+  },
+  "license": "MIT",
+  "author": "Paul Li",
+  "type": "commonjs",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}

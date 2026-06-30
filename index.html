@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Web Component: &lt;uni-checkbox-field /> - a web component based on uniopen design language</title>
+<meta name="description" content="uni-checkbox-field is an encapsulated Web Component built upon the foundation of the uniopen design language. Implementation is straightforward: simply slot a standard input element inside uni-checkbox-field. The component instantly applies a user interface that aligns seamlessly with the uniopen design language guidelines. Furthermore, its visual styles can be dynamically adapted via native HTML attributes or JavaScript properties." />
+<script type="module" src="mjs/wc-uni-checkbox-field.js"></script>
+<link rel="stylesheet" href="https://blog.lalacube.com/mei/css/wc-base.css">
+<link rel="stylesheet" href="https://blog.lalacube.com/mei/css/layers/radio-set.css">
+<link rel="stylesheet" href="https://blog.lalacube.com/mei/css/layers/defaults.css">
+<style>
+#hd,#ft{display:none;}
+body{position:relative;inline-size:100vw;block-size:100vh;margin:0;}
+
+.wrap {
+  inline-size: 100%;
+  max-inline-size: min(800px, calc(100% - 2em));
+  box-sizing: border-box;
+}
+
+.demo-wrap {
+  position: relative;
+  inline-size: min(100%, 800px);
+  background-color: rgba(var(--white));
+  margin: 6em auto 1em;
+  padding: 1.5em;
+  box-sizing: border-box;
+  border-radius: 1em;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  .unit-set {
+    --label-font-size: 16px;
+    --line-height: 22px;
+    --delta: calc((var(--line-height) - var(--label-font-size)) / 2);
+
+    display: flex;
+    gap: 8px;
+
+    uni-checkbox-field {
+      margin-block-start: var(--delta);
+    }
+
+    label {
+      font-size: var(--label-font-size);
+      line-height: var(--line-height);
+      color: var(--batcave);
+    }
+  }
+
+  &+.setting-form {
+    --subject-inline-size: auto;
+    margin-block-start: 1em;
+  }
+}
+</style>
+</head>
+
+<body class="flex-center">
+<div class="wrap">
+  <div class="demo-wrap">
+    <div class="unit-set">
+      <uni-checkbox-field>
+        <input
+          slot="checkbox"
+          type="checkbox"
+          id="my-checkbox-1"
+          name="my-checkbox"
+          value="value-1"
+          checked
+        />
+      </uni-checkbox-field>
+      <label for="my-checkbox-1">
+        Label A
+      </label>
+    </div>
+
+    <div class="unit-set">
+      <uni-checkbox-field>
+        <input
+          slot="checkbox"
+          type="checkbox"
+          id="my-checkbox-2"
+          name="my-checkbox"
+          value="value-2"
+        />
+      </uni-checkbox-field>
+      <label for="my-checkbox-2">
+        Label B
+      </label>
+    </div>
+
+    <div class="unit-set">
+      <uni-checkbox-field>
+        <input
+          slot="checkbox"
+          type="checkbox"
+          id="my-checkbox-3"
+          name="my-checkbox"
+          value="value-3"
+        />
+      </uni-checkbox-field>
+      <label for="my-checkbox-3">
+        Label C
+      </label>
+    </div>
+  </div>
+
+  <form class="setting-form">
+    <ul class="adjustments">
+      <li class="adjustments__row">
+        <p class="adjustments__row__subject">disabled：</p>
+        <div class="adjustments__row__content">
+          <div class="il-pair a11y-block-link">
+            <div class="radio-set">
+              <input id="disabled-0" type="radio" name="disabled" value="y" />
+              <label class="radio-set__label" for="disabled-0"></label>
+            </div>
+
+            <label for="disabled-0">
+              yes
+            </label>
+          </div>
+
+          <div class="il-pair a11y-block-link">
+            <div class="radio-set">
+              <input id="disabled-1" type="radio" name="disabled" value="n" checked />
+              <label class="radio-set__label" for="disabled-1"></label>
+            </div>
+
+            <label for="disabled-1">
+              no
+            </label>
+          </div>
+        </div>
+      </li>
+
+      <li class="adjustments__row">
+        <p class="adjustments__row__subject">round：</p>
+        <div class="adjustments__row__content">
+          <div class="il-pair a11y-block-link">
+            <div class="radio-set">
+              <input id="round-0" type="radio" name="round" value="y" />
+              <label class="radio-set__label" for="round-0"></label>
+            </div>
+
+            <label for="round-0">
+              yes
+            </label>
+          </div>
+
+          <div class="il-pair a11y-block-link">
+            <div class="radio-set">
+              <input id="round-1" type="radio" name="round" value="n" checked />
+              <label class="radio-set__label" for="round-1"></label>
+            </div>
+
+            <label for="round-1">
+              no
+            </label>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </form>
+</div>
+
+<script type="module">
+await customElements.whenDefined('uni-checkbox-field');
+
+const uniCheckboxFields = Array.from(document.querySelectorAll('.demo-wrap uni-checkbox-field'));
+const checkboxs = Array.from(document.querySelectorAll('.demo-wrap uni-checkbox-field input[type=checkbox]'));
+const form = document.querySelector('.setting-form');
+
+const handler = (evt) => {
+  const { target } = evt;
+  const formData = new FormData(form);
+  const fd = Object.fromEntries(formData.entries());
+
+  switch (target.name) {
+    case 'disabled': {
+      checkboxs.map(
+        (checkbox) => {
+          checkbox.disabled = fd['disabled'] === 'y';
+        }
+      );
+      break;
+    }
+
+    case 'round': {
+      uniCheckboxFields.map(
+        (uniCheckboxField) => {
+          uniCheckboxField.round = fd['round'] === 'y';
+        }
+      );
+      break;
+    }
+  }
+};
+
+form.addEventListener('input', handler);
+</script>
+
+</body>
+
+</html>
